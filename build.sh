@@ -1,3 +1,7 @@
 source ./config.sh
 
-make -j`nproc` && make INSTALL_MOD_PATH=${MOD_PATH}
+mkdir -p ${MOD_PATH}
+cd ${LINUX_SRC}
+make -j`nproc` && make INSTALL_MOD_PATH=${MOD_PATH} modules_install
+
+cd -
