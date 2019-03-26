@@ -19,7 +19,7 @@ then setup root password with `sudo passwd root`
 
 then use setup-sshkey.sh to setup ssh key access with guest vm.
 
-Also, comment
+Also, comment the following line in /etc/default/grub
 
 ```
 #GRUB_HIDDEN_TIMEOUT=0
