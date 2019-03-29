@@ -1,7 +1,7 @@
 source config.sh
 
 # copy modules
-rsync -av ${MOD_PATH}/lib/modules/${VERSION} root@${guest_ip}:/lib/modules/.
+rsync -av ${MOD_PATH}/lib/modules/*${VERSION}* root@${guest_ip}:/lib/modules/.
 
 cd ${LINUX_SRC}
 scp System.map root@${guest_ip}:~/.
