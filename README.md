@@ -1,9 +1,15 @@
 # dev helpers
 
 1. copy the /boot/config-xxx from guest
+
+   `scp root@guest_ip:/boot/config-3.13-xxx .config`
 2. change your guest ip and modules path in config.sh
-3. ./build.sh to compile
-4. ./update-guest.sh to install new kernel for guest os
+3. In linux src directory, `yes "" | make oldconfig`
+4. In linux src directory, `make menuconfig`, in virtualization, mark **KVM** and intel part to `*` (builtin),
+   In **Kernel Hacking - Compile time checks and options**, turn on the
+   **Provide GDB scripts for kernel debugging**, then save the config.
+5. `bash build.sh` to compile
+6. `bash update-guest.sh` to install new kernel for guest os
 
 ## pre setup
 
