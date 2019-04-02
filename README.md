@@ -8,6 +8,13 @@
 4. In linux src directory, `make menuconfig`, in virtualization, mark **KVM** and intel part to `*` (builtin),
    In **Kernel Hacking - Compile time checks and options**, turn on the
    **Provide GDB scripts for kernel debugging**, then save the config.
+
+   In **Device Drivers > Network device support > Ethernet driver support**,
+
+```
+<*>     RealTek RTL-8139 C+ PCI Fast Ethernet Adapter support
+<*>     RealTek RTL-8129/8130/8139 PCI Fast Ethernet Adapter support
+```
 5. `bash build.sh` to compile
 6. `bash update-guest.sh` to install new kernel for guest os
 
