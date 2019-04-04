@@ -33,18 +33,13 @@ then setup root password with `sudo passwd root`
 
 then use setup-sshkey.sh to setup ssh key access with guest vm.
 
-Also, comment the following line in /etc/default/grub,
-So we can choose kernel at boot time.
 
-```
-#GRUB_HIDDEN_TIMEOUT=0
-```
 
 # GDB debugging
 
 ## Host setup
 
-Run `virsh edit guest0` to edit the xml spec.
+Run `sudo virsh edit guest0` to edit the xml spec.
 
 ```
 # Modify this:
@@ -56,16 +51,27 @@ Run `virsh edit guest0` to edit the xml spec.
   </qemu:commandline>
 ```
 
+To enable **nested virtualization vmx feature**, `sudo virsh edit guest0` to modify the cpu attribute to,
+```
+  <cpu mode='host-model' check='partial'>
+    <model fallback='allow'>Haswell-noTSX-IBRS</model>
+  </cpu>
+```
+
 add the following line to ~/.gdbinit to allow loading helper files:
 
 ```
 set auto-load safe-path /
 ```
 
-**kernel compilation config**: after make oldconfig, edit the `.config` file,
-add `CONFIG_GDB_SCRIPTS=y`
-
 ## Guest setup
+comment the following lines in /etc/default/grub,
+So we can choose kernel at boot time.
+
+```
+#GRUB_HIDDEN_TIMEOUT=0
+#GRUB_HIDDEN_TIMEOUT_QUIET=true
+```
 
 add `nokaslr` to cmdline_linux_default (for gdb breakpoint to work)
 
@@ -84,8 +90,8 @@ gdb vmlinux
 In gdb:
 
 ```
-(gdb) target remote :1234
 (gdb) lx-symbols
+(gdb) target remote :1234
 ```
 
 then you can play with gdb, see https://01.org/linuxgraphics/gfx-docs/drm/dev-tools/gdb-kernel-debugging.html for info on helper commands
