@@ -33,8 +33,6 @@ then setup root password with `sudo passwd root`
 
 then use setup-sshkey.sh to setup ssh key access with guest vm.
 
-
-
 # GDB debugging
 
 ## Host setup
@@ -74,7 +72,7 @@ So we can choose kernel at boot time.
 ```
 
 add `nokaslr` to cmdline_linux_default (for gdb breakpoint to work)
-
+to /etc/default/grub
 ```
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nokaslr"
 ```
