@@ -54,7 +54,7 @@ To enable **nested virtualization vmx feature**, `sudo virsh edit guest0` to mod
   <cpu mode='host-model' check='partial'>
     <model fallback='allow'>Haswell-noTSX-IBRS</model>
   </cpu>
-  
+
   or add <feature policy='require' name='vmx'/> inside <cpu> section
 ```
 
@@ -65,12 +65,15 @@ set auto-load safe-path /
 ```
 
 ## Guest setup
-comment the following lines in /etc/default/grub,
-So we can choose kernel at boot time.
+modify /etc/default/grub.
 
 ```
-#GRUB_HIDDEN_TIMEOUT=0
+#GRUB_HIDDEN_TIMEOUT=-1
 #GRUB_HIDDEN_TIMEOUT_QUIET=true
+GRUB_TIMEOUT=-1
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nokaslr"
+GRUB_CMDLINE_LINUX="console=ttyS0,115200n8"
 ```
 
 add `nokaslr` to cmdline_linux_default (for gdb breakpoint to work)
@@ -78,6 +81,8 @@ to /etc/default/grub
 ```
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nokaslr"
 ```
+
+Then `sudo update-grub`.
 
 ## playing with GDB
 
