@@ -9,6 +9,5 @@ scp arch/x86/boot/bzImage root@${guest_ip}:~/vmlinuz-${VERSION}
 scp .config root@${guest_ip}:~/.
 
 ssh root@${guest_ip} "installkernel ${VERSION} vmlinuz-${VERSION} System.map"
-ssh root@${guest_ip} "update-grub"
 
 cd -
