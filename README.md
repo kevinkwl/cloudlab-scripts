@@ -97,7 +97,10 @@ In gdb:
 ```
 (gdb) lx-symbols
 (gdb) target remote :1234
+(gdb) hb vmx_init
+(gdb) c
 ```
+hb = hardware breakpoint, (normal breakpoint not working).
 
 then you can play with gdb, see https://01.org/linuxgraphics/gfx-docs/drm/dev-tools/gdb-kernel-debugging.html for info on helper commands
 like lx-symbols.
