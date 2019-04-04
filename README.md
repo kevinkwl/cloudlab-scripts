@@ -37,7 +37,10 @@ Also, comment the following line in /etc/default/grub,
 So we can choose kernel at boot time.
 
 ```
-#GRUB_HIDDEN_TIMEOUT=0
+GRUB_TIMEOUT=-1
+
+# GRUB_HIDDEN_TIMEOUT=0 
+# GRUB_HIDDEN_TIMEOUT_QUIET=true 
 ```
 
 # GDB debugging
@@ -68,7 +71,7 @@ add `CONFIG_GDB_SCRIPTS=y`
 ## Guest setup
 
 add `nokaslr` to cmdline_linux_default (for gdb breakpoint to work)
-
+to /etc/default/grub
 ```
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nokaslr"
 ```
@@ -84,8 +87,8 @@ gdb vmlinux
 In gdb:
 
 ```
-(gdb) target remote :1234
 (gdb) lx-symbols
+(gdb) target remote :1234
 ```
 
 then you can play with gdb, see https://01.org/linuxgraphics/gfx-docs/drm/dev-tools/gdb-kernel-debugging.html for info on helper commands
