@@ -54,6 +54,8 @@ To enable **nested virtualization vmx feature**, `sudo virsh edit guest0` to mod
   <cpu mode='host-model' check='partial'>
     <model fallback='allow'>Haswell-noTSX-IBRS</model>
   </cpu>
+  
+  or add <feature policy='require' name='vmx'/> inside <cpu> section
 ```
 
 add the following line to ~/.gdbinit to allow loading helper files:
