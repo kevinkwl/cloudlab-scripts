@@ -30,7 +30,7 @@ PasswordAuthentication yes
 ```
 
 then setup root password with `sudo passwd root`
-
+then sudo service ssh restart
 then use setup-sshkey.sh to setup ssh key access with guest vm.
 
 # GDB debugging
